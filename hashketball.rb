@@ -220,8 +220,8 @@ end
 def home_team_score
   counter_h = 0
   game_hash.each do |home_away, players|
-    home_away[:home].each do | players,stats|
-      counter_h = counter_h + stats[:points]
+    home_away[:home].each do | players|
+      counter_h = counter_h + players[:points]
     end
   end
   counter_h
