@@ -215,23 +215,7 @@ def most_points_scored
   return player 
 end
 
-def winning_team
-  counter_1 = 0
-  counter_2 = 0
-  game_hash.each do |home_away,players|
-    #binding.pry
-    home_away[:home].each do |players,stats|
-      counter_1 = counter_1+stats[:points]
-    end
-    home_away[:away].each do |players, stats|
-      counter_2 = counter_2+stats[:points]
-    end
-    if counter_1>counter_2
-      return home_away[:home]
-    else return home_away[:away]
-    end
-  end
-end
+
 
 def home_team_score
   counter_h = 0
