@@ -223,8 +223,11 @@ def winning_team
     if counter = 0
       counter < home_away[:home].length do |players,stats|
       counter_1 = counter_1+stats[:points]
-    elsif counter < home_away[:away].length do |players, stats|
+      counter += 1 
+    elsif counter = 0  
+      counter < home_away[:away].length do |players, stats|
       counter_2 = counter_2+stats[:points]
+      counter = 0 
     end
     if counter_1>counter_2
       return home_away[:home]
