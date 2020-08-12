@@ -236,7 +236,7 @@ end
 def home_team_score
   counter_h = 0
   game_hash.each do |home_away, players|
-    players[:players].each do |stats|
+    home_away[:home].each do | players,stats|
       counter = counter + stats[:points]
     end
   end
