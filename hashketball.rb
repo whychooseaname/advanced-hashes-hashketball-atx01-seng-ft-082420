@@ -220,20 +220,27 @@ def winning_team
   counter_2 = 0
   game_hash.each do |home_away,players|
     #binding.pry
-    if counter = 0
-      counter < home_away[:home].length do |players,stats|
+    home_away[:home].each do |players,stats|
       counter_1 = counter_1+stats[:points]
-      counter += 1 
-    elsif counter = 0  
-      counter < home_away[:away].length do |players, stats|
+    end
+    home_away[:away].each do |players, stats|
       counter_2 = counter_2+stats[:points]
-      counter = 0 
     end
     if counter_1>counter_2
       return home_away[:home]
     else return home_away[:away]
     end
   end
+end
+
+def home_team_score
+  counter_h = 0
+  game_hash.each do |home_away, players|
+    players[:players].each do |stats|
+      counter = counter + stats[:points]
+    end
+  end
+  counter_h
 end
 
 
