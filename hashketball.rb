@@ -1,3 +1,4 @@
+require 'pry'
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +128,115 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(name)
+  game_hash.each do |team, game_data|
+    game_data[:players].each do |player|
+      if player[:player_name] == name
+        return player[:points]
+      end
+    end
+  end
+end
+
+def shoe_size(name)
+  game_hash.each do |team, game_data|
+    game_data[:players].each do |player|
+      if player[:player_name] == name
+        return player[:shoe]
+      end
+    end 
+  end 
+end
+
+def team_colors(team)
+  game_hash.each do |home_away, game_data|
+    if game_data[:team_name] == team
+      return game_data[:colors]
+    end
+  end
+end
+
+def  team_names
+  game_hash.map do |team, game_data|
+    game_data[:team_name]
+  end
+end
+
+def player_numbers(name)
+  numbers = []
+  game_hash.each do |team, game_data|
+    if game_data[:team_name] == name
+      game_data[:players].each do |player|
+        numbers << player[:number]
+      end
+    end
+  end
+  numbers
+end
+
+
+def player_stats(player_name)
+  game_hash.each do |team, team_hash|
+    team_hash[:players].each do |player|
+      if player[:player_name] == player_name
+        return player
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  counter = 0 
+  shoe_size = 0
+  game_hash.each do |home_away, game_data|
+    game_data[:players].each do |stats|
+     #binding.pry
+      if stats[:shoe] > counter
+        counter=stats[:shoe]
+        shoe_size = stats[:rebounds]
+      end
+    end 
+  end 
+  return shoe_size
+end
+
+def most_points_scored
+  counter=0 
+  player = []
+  game_hash.each do |home_away,game_data|
+    game_data[:players].each do |stats|
+      if stats[:points]>counter
+        counter=stats[:points]
+        player = stats[:player_name]
+      end 
+    end
+  end
+  return player 
+end
+
+def winning_team
+  counter_1 = 0
+  counter_2 = 0
+  game_hash.each do |home_away,players|
+    #binding.pry
+    home_away[:home].each do |players,stats|
+      counter_1 = counter_1+stats[:points]
+    end
+    home_away[:away].each do |players, stats|
+      counter_2 = counter_2+stats[:points]
+    end
+    if counter_1>counter_2
+      return home_away[:home]
+    else return home_away[:away]
+    end
+  end
+end
+
+
+
+
+
+
+
+
